@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>树形菜单</title>
+<style type="text/css">
+a:link {
+text-decoration: none;
+}
+*{ padding:0; margin:0; list-style-type:none;}
+body{font-family: "楷体";font-size: 20px; width:236px;}
+#tree{ width:236px; margin:50px auto auto auto; overflow:hidden; border:1px #999 solid; border-bottom:0;}
+.tit{ width:236px; border-bottom:1px #999 solid; background-color:#CCC; height:32px; line-height:32px; cursor:pointer; }
+.tit span{padding-left:10px; width:236px;}
+.con{ width:236px; border-bottom:1px #999 solid;overflow:hidden; display:none;}
+.con li{width:236px; padding:6px 0px 1px 30px;}
+</style>
+<script language="javascript" type="text/javascript">
+function showtree(obj,j){
+	var mycon = document.getElementById("tree").getElementsByTagName("ul");
+	//alert(mycon.length);
+	for(var i=0;i<mycon.length;i++){
+		if (i==j){
+		    mycon[i].style.display = "block";
+		}
+        else{
+		    mycon[i].style.display = "none";
+			}
+	}
+}
+function  mainframeshow(html) 
+{ 
+    window.parent.frames['mainFrame'].location.href=html; 
+    return   false; 
+} 
+</script>
+</head>
+<body>
+<div id="tree">
+
+    <div class="tit" ><a  href="#" onclick= "return mainframeshow('main.html')" ><span>- 首页</span> </a></div>
+    <div class="tit" ><a  href="#" onclick= "return mainframeshow('cgi-bin/devstatus.cgi')" ><span>- 设备状态</span> </a></div>
+    <div class="tit" ><a  href="#" onclick= "return mainframeshow('cgi-bin/net.cgi')" ><span>- 网口配置</span> </a></div>
+    <div class="tit" ><a  href="#" onclick= "return mainframeshow('cgi-bin/uart_cfg.cgi')" ><span>- 串口配置</span> </a></div>
+    <div class="tit" ><a  href="#" onclick= "return mainframeshow('cgi-bin/rtu_setting.cgi')" ><span>- 井场配置</span> </a></div>
+    <div class="tit" ><a  href="#" onclick= "return mainframeshow('cgi-bin/fileload.cgi')" ><span>- 程序升级</span> </a></div>
+    <div class="tit"  onclick="showtree(this,0)"><span>+ 设备管理</span></div>
+    <ul class="con">
+        <li><a href="#" onclick= "return mainframeshow('cgi-bin/systime.cgi')">配置软件下载</a></li>
+        <li><a href="#" onclick= "return mainframeshow('cgi-bin/systime.cgi')">系统时间更改</a></li>
+        <li><a href="#" onclick= "return mainframeshow('cgi-bin/reboot.cgi')">重启系统</a></li>
+    </ul>
+
+    <div class="tit"  onclick="showtree(this,1)"><span>+ 数据查看</span></div>
+    <ul class="con">
+        <li><a href="#" onclick= "return mainframeshow('cgi-bin/systime.cgi')">通信状态</a></li>
+        <li><a href="#" onclick= "return mainframeshow('cgi-bin/dat_table.cgi')">数据查看</a></li>
+    </ul>    
+</div>
+</body>
+</html>
